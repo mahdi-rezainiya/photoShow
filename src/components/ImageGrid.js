@@ -1,8 +1,8 @@
-import { deleteDoc , doc} from "firebase/firestore";
-import { useFirestore } from "../hooks/useFirestore"
-import { db , storage } from "../firebase/config";
-import { deleteObject , ref } from "firebase/storage";
 import { useState } from "react";
+import { useFirestore } from "../hooks/useFirestore"
+import { deleteDoc , doc} from "firebase/firestore";
+import { deleteObject , ref } from "firebase/storage";
+import { db , storage } from "../firebase/config";
 import {motion} from 'framer-motion'; 
 
 export const ImageGrid = ({setSelectedImg}) => {
@@ -46,7 +46,7 @@ export const ImageGrid = ({setSelectedImg}) => {
                     transition={{delay : 1}} />
                     {showDeleteButtons && 
                     (<button className="delete-button" 
-                    onClick={e => handleDelete(e , doc.id , doc.url)}>Delete</button>)}
+                    onClick = {e => handleDelete(e , doc.id , doc.url)}>Delete</button>)}
                     </motion.div>
                 ))
             }

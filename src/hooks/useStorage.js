@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 import {db , storage} from "../firebase/config";
+import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export const useStorage = (file) => {
@@ -9,12 +9,11 @@ export const useStorage = (file) => {
     const [url , setUrl] = useState(null);
 
     useEffect(() => {
-        const storageRef = ref(storage , file.name);
         const collectionRef  = collection(db , 'images');
+        const storageRef = ref(storage , file.name);
         const uploadTask = uploadBytesResumable(storageRef , file);
 
         const unsub = uploadTask.on('state_changed' ,
-
             (snapshot) => {
             const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100 ;
             setProgress(percentage)},
