@@ -1,4 +1,3 @@
-import './App.css';
 import { ImageGrid } from './components/ImageGrid';
 import { Title } from './components/Title';
 import UploadForm from './components/UploadForm';

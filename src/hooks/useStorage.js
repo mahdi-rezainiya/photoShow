@@ -9,21 +9,19 @@ export const useStorage = (file) => {
     const [url , setUrl] = useState(null);
 
     useEffect(() => {
-        //reference
         const storageRef = ref(storage , file.name);
-        
-        // for firestore
         const collectionRef  = collection(db , 'images');
+        const uploadTask = uploadBytesResumable(storageRef , file);
 
+        const unsub = uploadTask.on('state_changed' ,
 
-
-        const uploadTask = uploadBytesResumable(storageRef , file)
-
-        const unsub = uploadTask.on('state_changed' , (snapshot) => {
+            (snapshot) => {
             const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100 ;
             setProgress(percentage)},
-        (err) => {setError(err)} ,
-        async () => {
+
+            (err) => {setError(err)} ,
+        
+            async () => {
             const downloadURL  = await getDownloadURL(storageRef)
             setUrl(downloadURL)
 

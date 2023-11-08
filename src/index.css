@@ -5,6 +5,10 @@
   --secondary: #4e4e4e;
   --error: #ff4a4a;
 }
+/* title */
+.title{
+  text-align: center;
+}
 
 /* base styles & title */
 body{
